@@ -1,0 +1,201 @@
+# Learn more about Jenkins and JENKINS_HOME directory for which this file is
+# intended.
+#
+#  http://jenkins-ci.org/
+#  https://wiki.jenkins-ci.org/display/JENKINS/Administering+Jenkins
+#
+# Note: secret.key is purposefully not tracked by git. This should be backed up
+# separately because configs may contain secrets which were encrypted using the
+# secret.key.  To back up secrets use 'tar -czf /tmp/secrets.tgz secret*' and
+# save the file separate from your repository.  If you want secrets backed up
+# with configuration, then see the bottom of this file for an example.
+
+# Ignore all JENKINS_HOME except jobs directory, root xml config, and
+# .gitignore file.
+/*
+!/jobs
+!/.gitignore
+!/*.xml
+
+# Ignore all files in jobs subdirectories except for folders.
+# Note: git doesn't track folders, only file content.
+jobs/**
+!jobs/**/
+
+# Uncomment the following line to save next build numbers with config.
+
+#!jobs/**/nextBuildNumber
+
+# For performance reasons, we want to ignore builds in Jenkins jobs because it
+# contains many tiny files on large installations.  This can impact git
+# performance when running even basic commands like 'git status'.
+builds
+indexing
+
+# Exclude only config.xml files in repository subdirectories.
+!config.xml
+
+# Don't track workspaces (when users build on the master).
+jobs/**/*workspace
+
+# Security warning: If secrets are included with your configuration, then an
+# adversary will be able to decrypt all encrypted secrets within Jenkins
+# config.  Including secrets is a bad practice, but the example is included in
+# case someone still wants it for convenience.  Uncomment the following line to
+# include secrets for decryption with repository configuration in Git.
+
+#!/secret*
+
+# As a result, only Jenkins settings and job config.xml files in JENKINS_HOME
+# will be tracked by git.
+
+# Docker project generated files to ignore
+#  if you want to ignore files created by your editor/tools,
+#  please consider a global .gitignore https://help.github.com/articles/ignoring-files
+.vagrant*
+bin
+docker/docker
+.*.swp
+a.out
+*.orig
+build_src
+.flymake*
+.idea
+.DS_Store
+docs/_build
+docs/_static
+docs/_templates
+.gopath/
+.dotcloud
+*.test
+bundles/
+.hg/
+.git/
+vendor/pkg/
+pyenv
+Vagrantfile
+
+# build products...
+*.py[co]
+build
+AUTHORS.TXT
+# Emacs backup and autosave files...
+*~
+.\#*
+\#*
+# RPM stuff...
+MANIFEST
+dist
+rpm-build
+# Eclipse/PyDev stuff...
+.project
+.pydevproject
+# PyCharm stuff...
+.idea
+#IntelliJ IDEA stuff..
+*.iml
+#VSCode stuff..
+.vscode/
+# Mac OS X stuff...
+.DS_Store
+# manpage build stuff...
+docs/man/man1/ansible*.1
+docs/man/man1/ansible*.1.asciidoc.in
+docs/man/man3/*
+# Sublime stuff
+*.sublime-project
+*.sublime-workspace
+# docsite stuff...
+docs/docsite/_build
+docs/docsite/*.html
+docs/docsite/htmlout
+docs/docsite/rst/conf.py
+docs/docsite/rst/index.rst
+docs/docsite/rst/cli/ansible-*.rst
+docs/docsite/rst/cli/ansible.rst
+docs/docsite/rst/dev_guide/collections_galaxy_meta.rst
+docs/docsite/rst/dev_guide/testing/sanity/index.rst.new
+docs/docsite/rst/dev_guide/index.rst
+docs/docsite/rst/modules/*.rst
+docs/docsite/rst/collections/*.rst
+!docs/docsite/rst/collections/all_plugins.rst
+docs/docsite/rst/collections/*/*.rst
+docs/docsite/rst/playbooks_directives.rst
+docs/docsite/rst/plugins_by_category.rst
+docs/docsite/rst/plugins/*/*.rst
+docs/docsite/rst/reference_appendices/config.rst
+docs/docsite/rst/reference_appendices/playbooks_keywords.rst
+docs/docsite/rst_warnings
+docs/docsite/searchindex.js
+docs/docsite/_static/*.gif
+docs/docsite/_static/*.png
+docs/docsite/_static/websupport.js
+# Vim swap files
+*.swp
+*.swo
+[._]*.un~
+credentials.yml
+# test output
+*.retry
+*.out
+.pytest_cache/
+.tox
+.cache
+.pytest_cache
+results.xml
+coverage.xml
+/test/units/cover-html
+/test/integration/inventory
+/test/integration/targets/*/backup/
+/test/cache/*
+# Development
+/test/develop
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+venv
+env
+Vagrantfile
+.vagrant
+# Backwards compatibility with `stable-2.9` and earlier branches.
+# Also used in the `devel` branch during early Ansible 2.10 development.
+/lib/ansible.egg-info/
+# First used in the `devel` branch during Ansible 2.10 development.
+/lib/ansible_base.egg-info/
+# First used in the `devel` branch during Ansible 2.11 development.
+/lib/ansible_core.egg-info/
+# vendored lib dir
+lib/ansible/_vendor/*
+!lib/ansible/_vendor/__init__.py
+# test stuff
+/test/integration/cloud-config-*.*
+!/test/integration/cloud-config-*.*.template
+.python-version
+# Release directory
+packaging/release/ansible_release
+/.cache/
+/test/results/
+/test/integration/cloud-config-aws.yml
+/test/integration/inventory.networking
+/test/integration/inventory.winrm
+/test/integration/cloud-config-aws.yml
+/test/integration/cloud-config-cs.ini
+# python 'rope' stuff
+.ropeproject
+# local 'ack' config files
+.ackrc
+# default 'coverage html' results
+htmlcov/
+# default 'coverage' tool data
+.coverage
+# ansible-test coverage results
+test/units/.coverage.*
+/test/integration/cloud-config-azure.yml
+/SYMLINK_CACHE.json
+changelogs/.plugin-cache.yaml
+.ansible-test-timeout.json
