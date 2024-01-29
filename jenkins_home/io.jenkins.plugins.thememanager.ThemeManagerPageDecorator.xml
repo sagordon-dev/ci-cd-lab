@@ -1,0 +1,5 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<io.jenkins.plugins.thememanager.ThemeManagerPageDecorator plugin="theme-manager@215.vc1ff18d67920">
+  <theme class="io.jenkins.plugins.darktheme.DarkThemeSystemManagerFactory" plugin="dark-theme@416.v535839b_c4e88"/>
+  <disableUserThemes>false</disableUserThemes>
+</io.jenkins.plugins.thememanager.ThemeManagerPageDecorator>
